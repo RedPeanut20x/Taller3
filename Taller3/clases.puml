@@ -1,0 +1,94 @@
+@startuml
+
+skin rose
+
+package model{
+
+    class Instrumento
+    {
+        -nombre: String
+        -material: String
+        -codigo: String
+        -precio: int
+        -stock: int
+
+        +Instrumento(nombre: String, material: String, codigo: String, precio: int, stock: int)
+        +getNombre(): String
+        +setNombre(): void
+        +getMaterial(): String
+        +setMaterial(): void
+        +getCodigo(): String
+        +setCodigo(): void
+        +getPrecio(): int
+        +setPrecio(): void
+        +getStock(): int
+        +setStock(): void
+    }
+
+    class Viento
+    {
+        +Viento(nombre: String, material: String, codigo: String, precio: int, stock: int)
+    }
+
+    class Cuerda
+    {
+        -tipoCuerda: String
+        -tipo: String
+        -numeroCuerdas: int
+
+        +Cuerda(tipoCuerda: String, tipo: String, numeroCuerdas: int)
+        +getTipoCuerda(): String
+        +setTipoCuerda(): void
+        +getTipo(): String
+        +setTipo(): void
+        +getNumeroCuerdas(): int
+        +setNumeroCuerdas(): void
+    }
+
+    class Percusion
+    {
+        -tipoPercusion: String
+        -altura: String
+
+        +Percusion(tipoPercusion: String, altura: String)
+        +getTipoPercusion(): String
+        +setTipoPercusion(): void
+        +getAltura(): String
+        +setAltura(): void
+    }
+
+Cuerda --|> Instrumento
+Percusion --|> Instrumento
+Viento --|> Instrumento
+}
+
+package services
+{
+    interface Sistema
+    {
+
+        +agregarInstrumento(): boolean
+        +venderInstrumento(): void
+        +consultarInstrumento(): void
+        +cerrarSistema(): void
+    }
+
+    class SistemaImpl
+    {
+        -instrumentosCuerdas : ArrayList<Cuerda>
+        -instrumentosViento : ArrayList<Viento>
+        -instrumentoPercusión : ArrayList<Percusion>
+
+        +SistemaImpl()
+    }
+
+    class Main
+    {
+        -cargarArchivoCSV(): void
+        -editarArchivosCSV() : void
+    }
+
+SistemaImpl --|> Sistema
+}
+
+@enduml
